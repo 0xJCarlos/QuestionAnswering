@@ -27,7 +27,7 @@ def limpiarTexto(ruta_archivo):
     lines = [line for line in lines if line.strip() != '']
     
     # Unir las lineas
-    textoLimpio = "\\n".join(lines)
+    textoLimpio = "\n".join(lines)
     
     return textoLimpio
 
@@ -53,8 +53,10 @@ def pregunta_respuesta(model, contexto, nlp):
       print('\nRespuesta:')
       print('-------------------')
       print(salida['answer'])
-     
-archivo = input("Introduce la ruta del contexto en .txt")
+
+
+os.system('clear')
+archivo = input("Introduce la ruta del contexto en .txt: ")
 contexto = limpiarTexto(archivo)
 
 pregunta_respuesta(model,contexto,nlp)

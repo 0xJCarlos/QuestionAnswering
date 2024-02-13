@@ -81,7 +81,7 @@ class QABotGUI:
             payload = {'inputs': {'question': question, 'context': context}}
             answer = self.query(payload)
             print("Answer" + str(answer))
-            if (answer.get('answer') == "None"):
+            if (str(answer.get('answer')) == "None"):
                 answer = "El modelo se encuentra cargando, espera unos segundos..."
             
 
@@ -103,8 +103,6 @@ class QABotGUI:
         # Directly check if the URL contains 
         if "https://es.wikipedia.org/wiki" in url:
             main_content = soup.find('div', {'class': 'mw-content-ltr mw-parser-output'})
-        elif "https://chat.openai.com/share" in url:
-            main_content = soup.find('div', {'class': 'mw-content-ltr mw-parser-output'})
 
         else:
             # Default action for other websites
@@ -117,7 +115,7 @@ class QABotGUI:
             return "No se encontró contenido"
 
     def query(self, payload):
-        model_id = "mrm8488/distill-bert-base-spanish-wwm-cased-finetuned-spa-squad2-es"
+        model_id = "MMG/bert-base-spanish-wwm-cased-finetuned-spa-squad2-es-finetuned-sqac"
         API_TOKEN = os.getenv('API_TOKEN')
         headers = {"Authorization": f"Bearer {API_TOKEN}"}
         API_URL = f"https://api-inference.huggingface.co/models/{model_id}"
